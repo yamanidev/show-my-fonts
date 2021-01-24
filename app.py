@@ -1,4 +1,4 @@
-#pylint: disable=W0614
+
 
 from tkinter import *
 from tkinter.font import *
