@@ -21,7 +21,7 @@ def nxt_command():
     font_style = Font(family = current_font, size = 20)
     current_font_label.config(text = current_font)
     dummy_text.config(font = font_style)
-    font_number.config(text = str(i+1) + "/ " + str(len(fonts)))
+    font_number.config(text = str(i+1) + " / " + str(len(fonts)))
     current_font_label.pack()
     dummy_text.pack()
 
@@ -34,11 +34,11 @@ def previous_command():
     current_font_label.config(text = current_font)
     previous.config(state = ACTIVE)
     dummy_text.config(font = font_style)
-    font_number.config(text = str(i+1) + "/ " + str(len(fonts)))
+    font_number.config(text = str(i+1) + " / " + str(len(fonts)))
     current_font_label.pack()
     dummy_text.pack()
 
-font_number = Label(root, text = str(i+1) + "/ " + str(len(fonts)))
+font_number = Label(root, text = str(i+1) + " / " + str(len(fonts)))
 current_font_label = Label(root, text = current_font)
 dummy_text = Label(root, text = "I am a dummy text", font = font_style)
 nxt = Button(root, text = "Next", width = 30, command = nxt_command)
