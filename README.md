@@ -1,2 +1,2 @@
 # About
-#### A simple GUI application that displays Tkinter fonts using Tkinter Python module.
+A simple Tkinter program that displays the installed fonts of your system.
