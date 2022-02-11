@@ -9,10 +9,7 @@ except ImportError:
     from tkinter import font
     from tkinter import ttk
 
-
 root = tk.Tk()
-root.title("Tkinter Fonts")
-root.geometry("400x400")
 
 FONTS = sorted(set(font.families()))
 
@@ -30,5 +27,7 @@ fonts_combobox.current(0)
 fonts_combobox.bind("<<ComboboxSelected>>", change_font)
 fonts_combobox.place(relx=0.5, y=200, anchor=tk.CENTER)
 
+root.title("Tkinter Fonts")
+root.geometry("400x400")
 root.resizable(False, False)
 root.mainloop()
