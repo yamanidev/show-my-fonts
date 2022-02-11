@@ -1,56 +1,34 @@
-from tkinter import *
-from tkinter.font import *
+try:
+    # Python 2
+    import Tkinter as tk
+    from Tkinter import font
+    import ttk
+except ImportError:
+    # Python 3
+    import tkinter as tk
+    from tkinter import font
+    from tkinter import ttk
 
-root = Tk()
+
+root = tk.Tk()
 root.title("Tkinter Fonts")
 root.geometry("400x400")
 
-fonts = list(families())
-fonts.sort()
+FONTS = sorted(set(font.families()))
 
-i = 0
-current_font = fonts[i]
-font_style = Font(family=current_font, size=20)
+dummy_text = tk.Label(root, text="I am cool dummy text", font=(FONTS[0], 20))
+dummy_text.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
 
 
-def nxt_command():
-    global i
-    global font_number
-    i += 1
-    current_font = fonts[i]
-    font_style = Font(family=current_font, size=20)
-    current_font_label.config(text=current_font)
-    dummy_text.config(font=font_style)
-    font_number.config(text=str(i + 1) + " / " + str(len(fonts)))
-    current_font_label.pack()
-    dummy_text.pack()
+def change_font(event=None):
+    new_font = font.Font(root=root, family=event.widget.get(), size=20)
+    dummy_text.config(font=new_font)
 
 
-def previous_command():
-    global i
-    global font_number
-    i -= 1
-    current_font = fonts[i]
-    font_style = Font(family=current_font, size=20)
-    current_font_label.config(text=current_font)
-    previous.config(state=ACTIVE)
-    dummy_text.config(font=font_style)
-    font_number.config(text=str(i + 1) + " / " + str(len(fonts)))
-    current_font_label.pack()
-    dummy_text.pack()
+fonts_combobox = ttk.Combobox(root, values=FONTS, state="readonly", width=30, font="Helvetica 12")
+fonts_combobox.current(0)
+fonts_combobox.bind("<<ComboboxSelected>>", change_font)
+fonts_combobox.place(relx=0.5, y=200, anchor=tk.CENTER)
 
-
-font_number = Label(root, text=str(i + 1) + " / " + str(len(fonts)))
-current_font_label = Label(root, text=current_font)
-dummy_text = Label(root, text="I am a dummy text", font=font_style)
-nxt = Button(root, text="Next", width=30, command=nxt_command)
-previous = Button(root, text="Previous", width=30, command=previous_command)
-
-current_font_label.pack(pady=30)
-dummy_text.pack()
-font_number.pack()
-nxt.pack(pady=30)
-previous.pack()
-
-root.resizable(0, 0)
+root.resizable(False, False)
 root.mainloop()
