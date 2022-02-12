@@ -9,9 +9,11 @@ except ImportError:
     from tkinter import font
     from tkinter import ttk
 
+root = tk.Tk()
+
+
 FONTS = sorted(set(font.families()))
 
-root = tk.Tk()
 
 # Label for dummy text
 dummy_text = tk.Label(root, text="I am a cool dummy text", font=(FONTS[0], 20))
@@ -20,7 +22,7 @@ dummy_text.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
 
 # Callback function whenever combobox selection is changed
 def change_font(event=None):
-    new_font = font.Font(root=root, family=event.widget.get(), size=20)
+    new_font = font.Font(family=event.widget.get(), size=20)
     dummy_text.config(font=new_font)
 
 
